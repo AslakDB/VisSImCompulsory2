@@ -163,6 +163,7 @@
     <ClCompile Include="VisSImCompulsory2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\AABB.h" />
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\Collision.h" />
     <ClInclude Include="Core\Model.h" />
