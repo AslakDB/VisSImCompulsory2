@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Camera.cpp" />
+    <ClCompile Include="Core\Model.cpp" />
     <ClCompile Include="Core\Shaders.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="VisSImCompulsory2.cpp" />
