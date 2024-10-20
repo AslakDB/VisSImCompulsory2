@@ -5,10 +5,11 @@
 #include "Model.h"
 #include "Sphere.h"
 #include "Collision.h"
+#include "BspileFunction.h"
 
 Sphere sphere;
 Collision coll;
-
+BspileFunction bspline;
 
 Camera camera;
 bool firstMouse = true;
@@ -30,10 +31,13 @@ bool inside;
          
         model SphereModel0, SphereModel1, SphereModel2, SphereModel3, SphereModel4;
         
-        model floorModel, ZWallP, ZWallN, XWallP, XWallN;
-        std::vector<model*> models = { &floorModel, &ZWallP, &ZWallN, &XWallP, &XWallN };
-        
+        model floorModel, ZWallP, ZWallN, XWallP, XWallN, bsplinemodel;
+        std::vector<model*> models = { &floorModel, &ZWallP, &ZWallN, &XWallP, &XWallN};
+
+        models.emplace_back( &bsplinemodel);
         std::vector<model*> sphere_models;
+
+        
         
         sphere_models.emplace_back(&SphereModel0);
         sphere_models.emplace_back(&SphereModel1);
@@ -45,7 +49,9 @@ bool inside;
         glm::mat4 trans = glm::mat4(1.0f);
         glm::mat4 projection;
         
-      
+      bspline.calculateBspline();
+              bspline.CreateBspline(bsplinemodel);
+
         
         sphere.CreateSphere(SphereModel0);
       sphere.CreateSphere(SphereModel1);
@@ -53,9 +59,9 @@ bool inside;
       sphere.CreateSphere(SphereModel3);
         sphere.CreateSphere(SphereModel4);
 
+
+        bsplinemodel.PlayerScale = glm::vec3(1.f);
         
-
-
         floorModel.PlayerPos = glm::vec3(0.f,0.f,0.f);
        
         ZWallN.PlayerPos= glm::vec3(0.f, 0, -4.5f);
@@ -123,12 +129,12 @@ bool inside;
                 element->DrawMesh(shaderProgram);
 
             }
-            /*for (model* element : models)
+            for (model* element : models)
             {
                 element->CalculateMatrix();
                 element->CalculateBoundingBox();
                 element->DrawMesh(shaderProgram);
-            }*/
+            }
             
             glfwSwapBuffers(window);
             glfwPollEvents();

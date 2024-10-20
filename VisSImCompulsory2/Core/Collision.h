@@ -74,7 +74,7 @@ public:
                 {
                     glm::vec3 collisionNormal = glm::normalize(distanceVector);
                     sphereModel->Velocity = glm::reflect(sphereModel->Velocity, collisionNormal);
-                    std::cout << "BallBoxCollision" << '\n';
+                  //  std::cout << "BallBoxCollision" << '\n';
                 }
             }
         }

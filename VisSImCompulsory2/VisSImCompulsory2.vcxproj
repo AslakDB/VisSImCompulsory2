@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\BspileFunction.cpp" />
     <ClCompile Include="Core\Camera.cpp" />
     <ClCompile Include="Core\Model.cpp" />
     <ClCompile Include="Core\Shaders.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\AABB.h" />
+    <ClInclude Include="Core\BspileFunction.h" />
     <ClInclude Include="Core\Camera.h" />
     <ClInclude Include="Core\Collision.h" />
     <ClInclude Include="Core\Model.h" />
