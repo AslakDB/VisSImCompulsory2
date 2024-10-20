@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include "AMath.h"
 #include "Camera.h"
 #include "Model.h"
 #include "Sphere.h"
@@ -8,6 +10,7 @@
 
 Sphere sphere;
 Collision coll;
+AMath math;
 
 
 Camera camera;
@@ -34,6 +37,14 @@ bool inside;
         std::vector<model*> models = { &floorModel, &ZWallP, &ZWallN, &XWallP, &XWallN };
         
         std::vector<model*> sphere_models;
+
+        std::vector<Vertex> pointCloud = math.loadPointCloud("pointCloud.txt", 100.f);
+        model* pointCloudModel = new model();
+        pointCloudModel->vertices = pointCloud;
+        models.emplace_back(pointCloudModel);
+        
+        pointCloudModel->Bind();
+        pointCloudModel->PlayerScale = glm::vec3(0.2f);
         
         sphere_models.emplace_back(&SphereModel0);
         sphere_models.emplace_back(&SphereModel1);
@@ -123,12 +134,16 @@ bool inside;
                 element->DrawMesh(shaderProgram);
 
             }
-            /*for (model* element : models)
+
+            
+            
+            for (model* element : models)
             {
                 element->CalculateMatrix();
                 element->CalculateBoundingBox();
+                //glPointSize(2.f);
                 element->DrawMesh(shaderProgram);
-            }*/
+            }
             
             glfwSwapBuffers(window);
             glfwPollEvents();
