@@ -1,6 +1,8 @@
-﻿#pragma once
+#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include "AMath.h"
 #include "Camera.h"
 #include "Model.h"
 #include "Sphere.h"
@@ -9,6 +11,7 @@
 
 Sphere sphere;
 Collision coll;
+AMath math;
 BspileFunction bspline;
 
 Camera camera;
@@ -37,7 +40,13 @@ bool inside;
         models.emplace_back( &bsplinemodel);
         std::vector<model*> sphere_models;
 
+        std::vector<Vertex> pointCloud = math.loadPointCloud("pointCloud.txt", 100.f);
+        model* pointCloudModel = new model();
+        pointCloudModel->vertices = pointCloud;
+        models.emplace_back(pointCloudModel);
         
+        pointCloudModel->Bind();
+        pointCloudModel->PlayerScale = glm::vec3(0.2f);
         
         sphere_models.emplace_back(&SphereModel0);
         sphere_models.emplace_back(&SphereModel1);
@@ -133,6 +142,7 @@ bool inside;
             {
                 element->CalculateMatrix();
                 element->CalculateBoundingBox();
+                //glPointSize(2.f);
                 element->DrawMesh(shaderProgram);
             }
             
