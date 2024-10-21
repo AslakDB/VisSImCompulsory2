@@ -12,7 +12,7 @@ float lastFrame = 0.0f;
 
 int main(int argc, char* argv[])
 {
-    GLFWwindow* window;
+    GLFWwindow* window ;
     /// Press I for å få en ball til å bevege på seg
     set_up.setup("Window", window, SCR_WIDTH,SCR_HEIGHT);
     glfwSetCursorPosCallback(window, mouse_callback);
