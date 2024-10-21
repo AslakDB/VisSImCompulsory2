@@ -17,11 +17,11 @@ glm::vec3 BspileFunction::evaluateBiquadratic(float u, float v, const std::vecto
 {
     glm::vec3 point(0.0f);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m  ; ++j) {
+    for (int i = 0; i < n ; ++i) {
+        for (int j = 0; j < m ; ++j) {
             float Bu = B2(u , i, uKnots);
             float Bv = B2(v, j, vKnots);
-            point += Bu * Bv * controlPoints[i * m + j];
+            point += Bu * Bv * controlPoints[i * m  + j ];
         }
     }
 
@@ -33,24 +33,26 @@ std::vector<glm::vec3> BspileFunction::calculateBspline()
     std::vector<glm::vec3> CalculatedPoints;
     
     std::vector<glm::vec3> controlPoints = {
-        {1.0f, 0.0f, 0.0f}, {2.0f, 0.0f, 0.0f}, {3.0f, 0.0f, 0.0f},
-        {1.0f, 1.0f, 2.0f}, {2.0f, 1.0f, 2.0f}, {3.0f, 1.0f, 0.0f},
-        {1.0f, 2.0f, 0.0f}, {2.0f, 2.0f, 0.0f}, {3.0f, 2.0f, 0.0f}
+        {1.0f, 0.0f, 0.0f}, {1.0f, 3.0f, 3.0f}, {3.0f, 0.0f, 1.0f},
+        {0.0f, 1.0f, 2.0f}, {2.0f, 3.0f, 2.0f}, {1.0f, 1.0f, 1.0f},
+        {0.0f, 2.0f, 0.0f}, {2.0f, 2.0f, 0.0f}, {3.0f, 2.0f, 1.0f} 
+          //{1.0f, 2.0f, 0.0f}, {2.0f, 2.0f, 0.0f}, {3.0f, 2.0f, 1.0f} ,{3.0f, 3.0f, 0.0f}
     };
-
+    
     
    // Define knot vectors
-    std::vector<float> uKnots = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-    std::vector<float> vKnots = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
+    std::vector<float> uKnots = {0, 0, 0, 1, 3, 1, 3};
+    std::vector<float> vKnots = {0, 0, 0, 1, 3, 1, 3};
+    glm::vec3 point(0.0f);
     // Evaluate the surface at a grid of points
-    int resolution = 10;
+    int resolution = 20;
     for (int i = 0; i <= resolution ; ++i) {
         for (int j = 0; j <= resolution - 1; ++j) {
-            float u = static_cast<float>(i) / static_cast<float>(resolution);
-            float v = static_cast<float>(j) / static_cast<float>(resolution);
-            glm::vec3 point = evaluateBiquadratic(u, v, controlPoints, uKnots, vKnots, 3, 3);
-            CalculatedPoints.emplace_back(point);
-        }
+            float u = (static_cast<float>(i) / static_cast<float>(resolution));
+            float v = (static_cast<float>(j) / static_cast<float>(resolution));
+            point = evaluateBiquadratic(u, v, controlPoints, uKnots, vKnots, 3, 3);
+           CalculatedPoints.emplace_back(point);
+        } 
     }
     return CalculatedPoints;
    
@@ -58,7 +60,7 @@ std::vector<glm::vec3> BspileFunction::calculateBspline()
 
 void BspileFunction::CreateBspline(model& bsplinemodel)
 {
-    std::vector<glm::vec3> calculatedPoints = calculateBspline();
+    std::vector<glm::vec3> calculatedPoints = calculateBspline() ;
     int resolution = static_cast<int>(sqrt(calculatedPoints.size())) - 1;
     
     for (const auto& point : calculatedPoints) {

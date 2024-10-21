@@ -32,7 +32,7 @@ bool inside;
     Render() = default;
     void render(GLFWwindow* window, unsigned int shaderProgram, float deltaTime, float lastFrame) {
          
-        model SphereModel0, SphereModel1, SphereModel2, SphereModel3, SphereModel4;
+        //model SphereModel0, SphereModel1, SphereModel2, SphereModel3, SphereModel4;
         
         model floorModel, ZWallP, ZWallN, XWallP, XWallN, bsplinemodel;
         std::vector<model*> models = { &floorModel, &ZWallP, &ZWallN, &XWallP, &XWallN};
@@ -48,25 +48,25 @@ bool inside;
         pointCloudModel->Bind();
         pointCloudModel->PlayerScale = glm::vec3(0.2f);
         
-        sphere_models.emplace_back(&SphereModel0);
+        /*sphere_models.emplace_back(&SphereModel0);
         sphere_models.emplace_back(&SphereModel1);
         sphere_models.emplace_back(&SphereModel2);
         sphere_models.emplace_back(&SphereModel3);
-        sphere_models.emplace_back(&SphereModel4);
+        sphere_models.emplace_back(&SphereModel4);*/
      
 
         glm::mat4 trans = glm::mat4(1.0f);
         glm::mat4 projection;
         
-      bspline.calculateBspline();
               bspline.CreateBspline(bsplinemodel);
 
         
+        /*
         sphere.CreateSphere(SphereModel0);
       sphere.CreateSphere(SphereModel1);
       sphere.CreateSphere(SphereModel2);
       sphere.CreateSphere(SphereModel3);
-        sphere.CreateSphere(SphereModel4);
+        sphere.CreateSphere(SphereModel4);*/
 
 
         bsplinemodel.PlayerScale = glm::vec3(1.f);
@@ -89,15 +89,18 @@ bool inside;
         XWallP.PlayerRotation = glm::vec3(0.f,0.f,90.f);
         XWallP.PlayerScale = glm::vec3(0.1f,1.f,1.f);
 
+        /*
         SphereModel0.PlayerPos = glm::vec3(-4.f,0.1f,0.3f);
         SphereModel1.PlayerPos = glm::vec3(-3.f,0.1f,0.2f);
         SphereModel2.PlayerPos = glm::vec3(0.f,0.1f,-1.f);
         SphereModel3.PlayerPos = glm::vec3(3.f,0.1f,0.f);
         SphereModel4.PlayerPos = glm::vec3(1.f,0.1f,-1.f);
+        */
         
         while (!glfwWindowShouldClose(window))
             {
 
+            /*
             coll.SphereSphereCollision(sphere_models);
            coll.SphereBoxCollision(sphere_models,models);
 
@@ -107,11 +110,12 @@ bool inside;
            sphere.Move(SphereModel2, deltaTime, SphereModel2.Velocity);
            sphere.Move(SphereModel3, deltaTime, SphereModel3.Velocity);
             sphere.Move(SphereModel4, deltaTime, SphereModel4.Velocity);
+            */
             
             float currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
-            ProsessInput(window, deltaTime, SphereModel0);
+            ProsessInput(window, deltaTime, ZWallN);
             
 
             projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
@@ -130,6 +134,7 @@ bool inside;
 
             glLineWidth(3);
 
+            glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
             
             for (model* element : sphere_models)
             {
