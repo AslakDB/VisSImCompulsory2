@@ -24,7 +24,7 @@ std::vector<Vertex> AMath::loadPointCloud(const std::string& filename, float rad
 
     glm::vec3 minPoint(FLT_MAX);
     glm::vec3 maxPoint(-FLT_MAX);
-    bool skipLine = false;
+    bool skipLine = true;
 
     while (std::getline(file, line)) {
         if (skipLine) {
@@ -33,7 +33,8 @@ std::vector<Vertex> AMath::loadPointCloud(const std::string& filename, float rad
         }
 
         float x, y, z;
-        if (sscanf_s(line.c_str(), "%f %f %f", &x, &y, &z) == 3) {
+        //Supports both space and tab seperated values
+        if (sscanf_s(line.c_str(), "%f %f %f", &x, &y, &z) == 3 || sscanf_s(line.c_str(), "%f\t%f\t%f", &x, &y, &z) == 3) {
             float xf = x;
             float yf = z;
             float zf = y;
