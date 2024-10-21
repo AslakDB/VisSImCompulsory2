@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\BspileFunction.cpp;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\BspileFunction.obj
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Camera.cpp;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\Camera.obj
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\AMath.cpp;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\AMath.obj
@@ -5,3 +6,12 @@ C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Model.cpp;C:\Sp
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Shaders.cpp;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\Shaders.obj
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\glad.c;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\glad.obj
 C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\VisSImCompulsory2.cpp;C:\SpillMotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\VisSImCompulsory2.obj
+=======
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\BspileFunction.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\BspileFunction.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Camera.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\Camera.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\AMath.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\AMath.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Model.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\Model.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\Core\Shaders.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\Shaders.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\glad.c;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\glad.obj
+C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\VisSImCompulsory2.cpp;C:\Users\Ander\Documents\Github\SpillmotorArkitektur\VisSImCompulsory2\VisSImCompulsory2\x64\Debug\VisSImCompulsory2.obj
+>>>>>>> Stashed changes

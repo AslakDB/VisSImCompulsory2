@@ -13,6 +13,7 @@ Sphere sphere;
 Collision coll;
 AMath math;
 BspileFunction bspline;
+// ABspline bsplineFunction;
 
 Camera camera;
 bool firstMouse = true;
@@ -150,6 +151,9 @@ bool inside;
                 //glPointSize(2.f);
                 element->DrawMesh(shaderProgram);
             }
+
+            // bsplineModel2.CalculateMatrix();
+            // bsplineModel2.DrawMesh(shaderProgram);
             
             glfwSwapBuffers(window);
             glfwPollEvents();

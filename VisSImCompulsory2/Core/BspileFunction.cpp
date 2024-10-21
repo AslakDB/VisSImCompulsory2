@@ -1,4 +1,4 @@
-﻿#include "BspileFunction.h"
+#include "BspileFunction.h"
 
 float BspileFunction::B2(float T, int i, const std::vector<float>& knots)
 {
@@ -58,34 +58,44 @@ std::vector<glm::vec3> BspileFunction::calculateBspline()
    
 }
 
-void BspileFunction::CreateBspline(model& bsplinemodel)
-{
-    std::vector<glm::vec3> calculatedPoints = calculateBspline() ;
+void BspileFunction::CreateBspline(model& bsplinemodel) {
+    std::vector<glm::vec3> calculatedPoints = calculateBspline();
     int resolution = static_cast<int>(sqrt(calculatedPoints.size())) - 1;
-    
+
+    bsplinemodel.vertices.clear();
+    bsplinemodel.indices.clear();
+
     for (const auto& point : calculatedPoints) {
-        std::cout << "Point : (" << point.x << ", " << point.y << ", " << point.z << ")\n";
         bsplinemodel.vertices.emplace_back(glm::vec3(point.x, point.y, point.z), glm::vec3(0.f), glm::vec3(0.9f));
     }
 
     for (int i = 0; i < resolution; ++i) {
         for (int j = 0; j < resolution; ++j) {
             int index = i * (resolution + 1) + j;
+        
+            // Define triangles for each quad
             bsplinemodel.indices.emplace_back(index, index + 1, index + resolution + 1);
-            std::cout << bsplinemodel.indices.back().A << " " << bsplinemodel.indices.back().B << " " << bsplinemodel.indices.back().C << std::endl;
-
             bsplinemodel.indices.emplace_back(index + 1, index + resolution + 2, index + resolution + 1);
-            std::cout << bsplinemodel.indices.back().A << " " << bsplinemodel.indices.back().B << " " << bsplinemodel.indices.back().C << std::endl;
         }
     }
 
-    for (Triangle& index : bsplinemodel.indices) {
-        glm::vec3 normal = glm::cross(bsplinemodel.vertices[index.B].XYZ - bsplinemodel.vertices[index.A].XYZ, bsplinemodel.vertices[index.C].XYZ - bsplinemodel.vertices[index.A].XYZ);
-        bsplinemodel.vertices[index.A].Normals += glm::normalize(normal);
-        bsplinemodel.vertices[index.B].Normals += glm::normalize(normal);
-        bsplinemodel.vertices[index.C].Normals += glm::normalize(normal);
+    // Kalkulerer normaler for flat shading
+    for (Triangle& triangle : bsplinemodel.indices) {
+        glm::vec3 normal = glm::cross(
+            bsplinemodel.vertices[triangle.B].XYZ - bsplinemodel.vertices[triangle.A].XYZ,
+            bsplinemodel.vertices[triangle.C].XYZ - bsplinemodel.vertices[triangle.A].XYZ
+        );
+
+        normal = glm::normalize(normal);
+        
+        bsplinemodel.vertices[triangle.A].Normals += normal;
+        bsplinemodel.vertices[triangle.B].Normals += normal;
+        bsplinemodel.vertices[triangle.C].Normals += normal;
     }
 
-    
+    // Sørger for å normalisere alle normalene i modellen
+    for (auto& vertex : bsplinemodel.vertices) {
+        vertex.Normals = glm::normalize(vertex.Normals);
+    }
     bsplinemodel.Bind();
 }
